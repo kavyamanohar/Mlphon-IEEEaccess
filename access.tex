@@ -39,6 +39,7 @@ BoldFont=GentiumPlus-Bold.ttf
 \begin{document}
 % \history{Date of publication xxxx 00, 0000, date of current version xxxx 00, 0000.}
 % \doi{10.1109/ACCESS.2017.DOI}
+\doi{}
 
 \title{Mlphon: A Multifunctional Grapheme-Phoneme Conversion Tool using Finite State Transducers}
 \author{\uppercase{Kavya Manohar}\authorrefmark{1,3}, %\IEEEmembership{Fellow, IEEE},
@@ -677,8 +678,8 @@ $\sigma  : Q → \Gamma^* $ \textit{is the output function}
        Q  & \{{\ipa q0, q1, q2, q3, q4}\} \\
         $\Sigma$ & \{{\mal അ, വ, ൻ, ൾ}, {\ipa ɛ}\} \\
         $\Gamma$ &  \{{\ipa a, ʋ, n, ɭ}\} \\
-        I & \{{\ipa q0\} \\
-        F & \{{\ipa q4}\} \\
+        I & \{{\ipa q0}\} \\
+        F & \{{\ipa q4}\}\\
         $\delta$ & $\delta$({\ipa q0}, {\mal അ}) = {\ipa q1}; $\delta$({\ipa q1}, {\mal വ}) = {\ipa q2}; $\delta$({\ipa q2}, {\ipa ɛ})= {\ipa q3}; \\
             & $\delta$({\ipa q3}, {\mal ൻ}) = {\ipa q4};  $\delta$({\ipa q3},{\mal ൾ}) = {\ipa q4} \\
             
@@ -1459,7 +1460,7 @@ Comparing the true phonemes in gold standard lexicons to the transcription provi
 \begin{table}[h]
 	\begin{center}
 % 		\begin{minipage}{190pt}
-			\caption{Precision, Recall and F1 Scores of phoneme transcription by Mlphon. These metrics are 1 for all other phonemes.}
+			\caption{Precision, Recall and F1 Scores of phoneme transcription by Mlphon. For all other phonemes, these metrics are evaluated to be 100\%.}
 			\label{precision}
 			\begin{tabular}{@{}cccc@{}}
 				\hline\hline
@@ -1560,7 +1561,7 @@ We performed a detailed analysis of g2p errors on different types of words in th
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{g2p-error.jpg}
-    \caption{Distribution of g2p errors in different word types in gold standard lexicon}
+    \caption{Distribution of g2p errors in different word types in gold standard lexicon.}
     \label{g2p-error}
 \end{figure}
 
@@ -1771,7 +1772,7 @@ Proposed tool & 69k & 1& \textbf{9.6}\\
 \centering
 	\begin{center}
 		\begin{minipage}{\textwidth}
-			\caption{Pronunciation lexicons of different word categories}
+			\caption{Pronunciation lexicons of different word categories.}
 			\label{dictionaries}
 			\begin{tabular}{@{}p{1.8cm}p{3cm}p{12cm}@{}}
 				\hline
@@ -1813,7 +1814,7 @@ Table \ref{lexiconsamples}  gives an excerpt from different categories of pronun
 \begin{table}[!h]
 	\begin{center}
 		\begin{minipage}{\textwidth}
-			\caption{An excerpt from pronunciation lexicons}\label{lexiconsamples}
+			\caption{An excerpt from pronunciation lexicons.}\label{lexiconsamples}
 			\begin{tabular}{@{}p{1.2cm}p{1.5cm}p{2cm}p{2.2cm}@{}}
 				\hline
 				\hline
@@ -1874,7 +1875,7 @@ Unified Parser is prohibitively slow due to the additional memory management req
 
 
 \begin{table}[h]
-\caption{Comparison of the WPS of the proposed tool Mlphon with other openly available tools }
+\caption{Comparison of the WPS of the proposed tool Mlphon with other openly available tools.}
 \label{speed}
 \begin{tabular}{l|l}
 \hline \hline
@@ -1931,7 +1932,7 @@ This interface can aid even a non native linguistic researcher to analyse and un
 
 \subsection{Phonemic Diversity Analysis of Speech Corpora}
 
-Speech corpus used in developing ASR and TTS systems has to be phonemically balanced and rich to ensure proper acoustic modeling  \cite{malviya2016structural}. We transcribed the speech corpus transcript to phonemised text using Mlphon. The phoneme diversity of the resulting text is then analysed. The graph in Fig. \ref{phoneticrichness} illustrates the phonemic richness of the corpora used in the ASR experiments described in Section \ref{asr}. The phoneme with the highest number of appearances is the inherent vowel {\ipa /a/}, followed by the vowel {\ipa /e/} in all the corpora under consideration. The most frequent consonant phoneme is the dental plosive {\ipa  /t̪a/} in Indic TTS  \cite{baby2016resources} and OpenSLR \cite{he-etal-2020-open} corpora while it is {\ipa /n̪a/} in Festvox IIITH \cite{prahallad2012iiit} corpus. The statistical analysis of phonemes could potentially be used to design corpora with phonemically balanced content \cite{torres2019emilia}.
+Speech corpus used in developing ASR and TTS systems has to be phonemically balanced and rich to ensure proper acoustic modeling  \cite{malviya2016structural}. We transcribed the speech corpus transcript to phonemised text using Mlphon. The phoneme diversity of the resulting text is then analysed. The graph in Fig. \ref{phoneticrichness} illustrates the phonemic richness of the corpora used in the ASR experiments described in Section \ref{asr}. The phoneme with the highest number of appearances is the inherent vowel {\ipa /a/}, followed by the vowel {\ipa /i/} in all the corpora under consideration. The most frequent consonant phoneme is the dental plosive {\ipa  /t̪/} in Indic TTS  \cite{baby2016resources} corpus while it is {\ipa /n̪/} in OpenSLR \cite{he-etal-2020-open} and  Festvox IIITH \cite{prahallad2012iiit} corpora. The statistical analysis of phonemes could potentially be used to design corpora with phonemically balanced content \cite{torres2019emilia}.
 
 
 \begin{figure*}[h]
@@ -1951,7 +1952,7 @@ Large body of text (web crawled, crowd sourced, curated, transcribed or annotate
 The Table \ref{sanitycheck} lists the number of tokens flagged as errors after script grammar check using Mlphon in various Malayalam speech corpora. These flagged errors were corrected before feeding them for training in ASR experiments explained in section \ref{asr}. However, errors which do not violate the script grammar rules can not be detected by Mlphon.
 
 \begin{table}[!h]
-\caption{Number of word tokens flagged as invalid by Mlphon on different transcribed speech corpus and corresponding error rates}
+\caption{Number of word tokens flagged as invalid by Mlphon on different transcribed speech corpus and corresponding error rates.}
 \label{sanitycheck}
 \begin{tabular}{lcc}
 \hline \hline
@@ -2036,7 +2037,7 @@ Indic Speech \cite{srivastava-etal-2020-indicspeech}& 4337 & 4.3\%\\
 \section{Conclusion}
 \label{conclusion}
 
-In this article we presented the requirement analysis, design and the development of a knowledge based computational linguistic tool, Mlphon, using FSTs. The syllabification of graphemes as well as phonemes, phonetic feature analysis and bidirectional grapheme-phoneme conversions that can be performed by Mlphon has applications in speech and linguistic research. The syllabification and grapheme-phoneme conversion capability of Mlphon is evaluated against a gold standard lexicon. Mlphon performs syllabification with an  accuracy of 99\% and syllable error rate of 0.62\% on gold standard lexicon. On grapheme to phoneme conversion task, a phoneme recognition accuracy of of 99\%  with a phoneme error of  0.55\% is observed. The pronunciation lexicons generated with Mlphon has improved performance in terms of WER, than other automated tools when employed in ASR task as demonstrated in this article. Mlphon has a high word processing speed when compared to other tools for g2p mapping. The pronunciation lexicon with 100k common words, verbs, nouns and foreign language words in phonemised and syllabified forms published along this work is the first of its kind in Malayalam.  Mlphon that takes care of the script specific contextual rules for phonemic analysis serve as a useful resource for various NLP tasks including ASR, TTS, syllabification for language modeling, phonemic diversity analysis, assisted pronunciation learning and text sanity check as demonstrated in this article.
+In this article we presented the requirement analysis, design and the development of a knowledge based computational linguistic tool, Mlphon, using FSTs. The syllabification of graphemes as well as phonemes, phonetic feature analysis and bidirectional grapheme-phoneme conversions that can be performed by Mlphon has applications in speech and linguistic research. The syllabification and grapheme-phoneme conversion capability of Mlphon is evaluated against a gold standard lexicon. Mlphon performs syllabification with an  accuracy of 99\% and syllable error rate of 0.62\% on gold standard lexicon. On grapheme to phoneme conversion task, a phoneme recognition accuracy of of 99\%  with a phoneme error of  0.55\% is observed. The pronunciation lexicons generated with Mlphon has improved performance in terms of WER, than other automated tools when employed in ASR task as described in this article. Mlphon has a high word processing speed when compared to other tools for g2p mapping. The pronunciation lexicon with 100k common words, verbs, nouns and foreign language words in phonemised and syllabified forms published along this work is the first of its kind in Malayalam.  Mlphon that takes care of the script specific contextual rules for phonemic analysis serve as a useful resource for various NLP tasks including ASR, TTS, syllabification for language modeling, phonemic diversity analysis, assisted pronunciation learning and text sanity check as demonstrated in this article.
 \appendices
 
 

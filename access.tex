@@ -73,7 +73,9 @@ Kerala - 695 586 India}
 
 % \titlepgskip=-15pt
 \maketitle
+
 \section{Introduction}
+
 \label{intro}
 
 Precise text processing taking care of intricate linguistic details is a pre-requisite for many downstream natural language processing (NLP) tasks. This applied research work presents the motivation and steps involved in the  development of a knowledge based computational linguistic tool, Mlphon, that can solve multiple text processing problems closely associated with speech related and some general purpose NLP tasks. Mlphon is built on finite state transducers (FSTs) to perform multiple functions including grapheme to phoneme (g2p) and phoneme to grapheme (p2g) conversions, syllabification on graphemes as well as phonemes, phonetic feature analysis, and script grammar check for Malayalam. The features of Mlphon are accessible through a programmable python API, that can be integrated with the development process of automatic speech recognition (ASR) and text to speech synthesis (TTS).
@@ -637,7 +639,7 @@ A sequence of characters that do not belong to any of the classes listed above, 
 \section{The Design and Development of Mlphon}
 \label{arch}
 
-Given that Malayalam linguistic literature contains well-established pronunciation modelling rules \cite{mohanan1989syllable, asher1997, prabo2016}, we computationally model these rules in a deterministic manner using finite state transducers, which are ideal for this task \cite{kaplan1994regular}. FSTs are apt for morphological as well as phonological parsing of natural languages \cite{kaplan1994regular}. An FST maps between two sets of symbols. Formally a finite state transducer $T$ can be defined \cite{jurafsky2014speech} as a set of seven parameters ($Q,\Sigma, \Gamma, I, F, \delta, \sigma$) where
+Given that Malayalam linguistic literature contains well-established pronunciation modeling rules \cite{mohanan1989syllable, asher1997, prabo2016}, we computationally model these rules in a deterministic manner using finite state transducers, which are ideal for this task \cite{kaplan1994regular}. FSTs are apt for morphological as well as phonological parsing of natural languages \cite{kaplan1994regular}. An FST maps between two sets of symbols. Formally a finite state transducer $T$ can be defined \cite{jurafsky2014speech} as a set of seven parameters ($Q,\Sigma, \Gamma, I, F, \delta, \sigma$) where
 
 Q \textit{is a finite set of states}
 
@@ -1013,7 +1015,7 @@ The preliminary mapping carried out by this FST will be modified by subsequent F
 
 \subsubsection{Inherent Vowel Addition}
 
-Inherent vowel {\ipa /a/} is added after consonant phonemes if it is at the end of a syllable position, or it is followed by the anuswara, visarga, or a chillu as described in Algorithm \ref{disambiguation}.
+Inherent vowel {\ipa /a/} is added after consonant phonemes if it is at the end of a syllable position, or it is followed by the \textit{anuswara}, \textit{visarga}, or a \textit{chillu} as described in Algorithm \ref{disambiguation}.
 
 
 
@@ -1131,7 +1133,7 @@ The tag-removal FST  removes the boundary tags and phonetic feature tags, by map
 \subsection{Syllabifier FST}
 \label{syllabification}
 
-The composition of the series of FSTs from \ref{normalisation} to \ref{syllabletagger} results in a very useful module that performs syllabification of Malayalam text. We compose these FSTs to get the Syllabifier FST and provide programmable access to it in the Mlphon Python library. This module has interesting applications like developing subword level language modelling for ASR as described in section \ref{applications}. An illustration of this module accepting Malayalam text as input and generating output with syllable boundary tags is shown in Fig. \ref{syllabifierblock}.
+The composition of the series of FSTs from \ref{normalisation} to \ref{syllabletagger} results in a very useful module that performs syllabification of Malayalam text. We compose these FSTs to get the Syllabifier FST and provide programmable access to it in the Mlphon Python library. This module has interesting applications like developing subword level language modeling for ASR as described in section \ref{applications}. An illustration of this module accepting Malayalam text as input and generating output with syllable boundary tags is shown in Fig. \ref{syllabifierblock}.
 
 
 \begin{figure}[h]
@@ -1269,7 +1271,7 @@ Evaluating a script analysis toolkit like Mlphon is not straight forward due the
 
 The lexical entries in gold standard lexicon are chosen from the IndicNLP Corpus\footnote{\url{https://github.com/AI4Bharat/indicnlp_corpus}} \cite{kunchukuttan2020ai4bharat} which is a list of words with frequency information. These words belong to a general domain, web crawled Malayalam text corpus of 167.4 million tokens with 8.8 million types. 
 
-The manually verified gold standard annotations were created semi-automatically. The process began with the syllabification of 1000 of the most common words in this corpus using Mlphon. It gave back a list of words, some of which had the proper syllabification and others of which had none at all. A small portion of the words that couldn't be syllabified were incorrectly spelled, which is typical of a corpus compiled from web crawls. Misspelt words were manually corrected in the corpus and syllabified. All the syllabifications peformed by Mlphon were also manually verified and corrected, if found to be wrong. For the remaining words, which could not be syllabified, manual annotation was performed. Thus the gold standard lexicon for syllabification was obtained.
+The manually verified gold standard annotations were created semi-automatically. The process began with the syllabification of 1000 of the most common words in this corpus using Mlphon. It gave back a list of words, some of which had the proper syllabification and others of which had none at all. A small portion of the words that couldn't be syllabified were incorrectly spelled, which is typical of a corpus compiled from web crawls. Misspelt words were manually corrected in the corpus and syllabified. All the syllabifications performed by Mlphon were also manually verified and corrected by expert linguists, if found to be wrong. For the remaining words, which could not be syllabified, manual annotation was performed. Thus the gold standard lexicon for syllabification was obtained.
 
 The gold standard lexicon for g2p mapping followed a similar procedure. Mlphon was used to phoneme map the spelling corrected 1000 words. The returned results were manually corrected for deletion, substitution and insertion errors. The manual corrections were performed, following all the rules and descriptions in the reference books \cite{asher1997,prabo2016}. The removal of word final schwa (\textit{samvruthokaram}) in proper nouns was suggested in a consultation with linguists. The final annotations on the gold standard lexicon were approved by them.
 
@@ -1431,7 +1433,7 @@ The grapheme to phoneme conversion of Mlphon is evaluated, comparing its output 
 				\hline\hline
 			 Word             & Reference             & Mlphon                   & Error        \\
 				\hline
-				\mal ഈ}         & {\ipa iː}                               & {\ipa iː}                               & -            \\
+				{\mal ഈ}         & {\ipa iː}                               & {\ipa iː}                               & -            \\
 				 {\mal ഉന്നത}      & {\ipa u n n a t̪ a}                      & {\ipa u n n a t̪ a}                      & -            \\
 			 {\mal  എന്ന}       & {\ipa e n̪ n̪ a }                         & {\ipa e n̪ n̪ a}                          & -            \\
 			 {\mal  ഒരു}        & {\ipa o ɾ u }                           & {\ipa o ɾ u}                            & -            \\
@@ -1589,7 +1591,7 @@ Sample entries from the pronunciation lexicons created using these tools, are pr
     \item Espeak additionally considers allophonic variations due to co-articulation effects. Mlphon does not consider this because this is not a phonemic change.
 \end{enumerate}
 
-The carefully crafted pronunciation rules on Mlphon has close to perfect g2p mappings. It makes Mlphon suitable for the creation pronunciation lexicons and for linguistic learning purposes. The unattended contextual rules make Unified Parser less suitable for such tasks. Espeak is suitable to identify allophonic variations. The impact of these lexicons on ASR task is experimentally analysed and presented below.
+The carefully crafted pronunciation rules in Mlphon has close to perfect g2p mappings. It makes Mlphon suitable for the creation pronunciation lexicons and for linguistic learning purposes. The unattended contextual rules make Unified Parser less suitable for such tasks. Espeak is suitable to identify allophonic variations. The impact of these lexicons on ASR task is experimentally analysed and presented below.
 
 % The pronunciation lexicon contains words and their pronunciation as a sequence of phonemes.
 
@@ -1746,7 +1748,7 @@ TDNN & 35.7& 34.9&\textbf{34.6 }&10.7 & 9.7&\textbf{ 9.6}\\
 
 This analysis is an indicator of the importance of precise g2p conversion required for speech tasks. Also as we demonstrate in the following section, Mlphon has the additional advantage of high word processing speed, while creating pronunciation lexicons.
 
-Although there have been previously published works on ASR for continuous Malayalam speech \cite{lavanya2018,deekshitha,lekshmi2021}, each one was tested using private datasets described in respective papers. The lexicon creation process was not explicitly explained. Additionally, some of these works did not mention the sizes of the pronunciation lexicon and OOV rates, which have a significant impact on the WER. Neverthless we present a comparison of these previously reported WERs with ours. It is observed that, on two different test datasets of OOV rates 14\% and 1\%, the proposed ASR with Mlphon lexicon provides similar or better WERs when compared with previously reported WERs as listed in Table \ref{asrcomparison}. 
+Although there have been previously published works on ASR for continuous Malayalam speech \cite{lavanya2018,deekshitha,lekshmi2021}, each one was tested using private datasets described in respective papers. The lexicon creation process was not explicitly explained. Additionally, some of these works did not mention the sizes of the pronunciation lexicon and OOV rates, which have a significant impact on the WER. Nevertheless we present a comparison of these previously reported WERs with ours. It is observed that, on two different test datasets of OOV rates 14\% and 1\%, the proposed ASR with Mlphon lexicon provides similar or better WERs when compared with previously reported WERs as listed in Table \ref{asrcomparison}. 
 
 \begin{table}[h]
 	\caption{Comparison of WER from previously reported works on  Malayalam ASR. The ASR we built using the lexicon created with Mlphon performs at par with the previously reported works.}
@@ -1856,7 +1858,7 @@ Table \ref{lexiconsamples}  gives an excerpt from different categories of pronun
 
 \subsection{COMPARISON OF PROCESSING SPEED}
 
-Word processing speed (WPS) is one indicator of a g2p algorithm's effectiveness \cite{mdpi2022ruleg2p}. The WPS  for the applications, Unified Parser \cite{baby2016unified}, Espeak\footnote{Using Phonemizer library \url{https://pypi.org/project/phonemizer/}} and the proposed tool Mlphon was estimated by measuring the time required to convert the 100k common words in Malayalam listed in Indic NLP corpus \cite{kunchukuttan2020ai4bharat} as per (\ref{wps}). Mlphon with a WPS of 69142 words per second is atleast ten times faster than Espeak and 1000 times faster than Unified Parser as per the values computed and listed in Table \ref{speed}. This faster processing speed of  Mlphon makes it particularly suitable for integration with other real time NLP applications.
+Word processing speed (WPS) is one indicator of a g2p algorithm's effectiveness \cite{mdpi2022ruleg2p}. The WPS  for the applications, Unified Parser \cite{baby2016unified}, Espeak\footnote{Using Phonemizer library \url{https://pypi.org/project/phonemizer/}} and the proposed tool Mlphon was estimated by measuring the time required to convert the 100k common words in Malayalam listed in Indic NLP corpus \cite{kunchukuttan2020ai4bharat} as per (\ref{wps}). Mlphon with a WPS of 69142 words per second is at least ten times faster than Espeak and 1000 times faster than Unified Parser as per the values computed and listed in Table \ref{speed}. This faster processing speed of  Mlphon makes it particularly suitable for integration with other real time NLP applications.
 
 \begin{equation}
 \label{wps}
@@ -1915,7 +1917,7 @@ It is important for a new script learner to understand the pronunciations correc
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=\linewidth]{demo.png}
+	\includegraphics[width=\linewidth]{mlphon-web.png}
 	\caption{Web interface for Mlphon. Features of syllabification, phonetic analysis and IPA transcription are shown.}
 	% \Description{Phonemic diversity analysis of various speech corpora used in ASR Experiments. The graphs indicate all corpora are equally diverse.}
 	\label{mlphon-web}
